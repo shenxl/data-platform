@@ -13,7 +13,7 @@ module.exports = appInfo => {
       port: '3306',
       user: 'root',
       password: '',
-      database: 'eggdemo'
+      database: 'wpsactivity_bk'
     },
     // 是否加载到 app 上，默认开启
     app: true,
