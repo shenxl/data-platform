@@ -1,4 +1,4 @@
-# dataPlatform
+# data-Platform
 
 数据统计服务
 
@@ -8,7 +8,7 @@
 
 see [egg docs][egg] for more detail.
 
-### Development
+### 开发环境
 
 ```bash
 $ npm i
@@ -16,7 +16,7 @@ $ npm run dev
 $ open http://localhost:7001/news
 ```
 
-### Deploy
+### 部署
 
 ```bash
 $ npm start
