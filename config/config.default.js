@@ -6,6 +6,16 @@ module.exports = appInfo => {
   // should change to your own
   config.keys = appInfo.name + '_1504860942113_6820';
     // add your config here
+
+  config.sequelize = {
+    dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+    database: 'demodb',
+    host: 'localhost',
+    port: '3306',
+    username: 'root',
+    password: ''
+  };
+
   config.mysql = {
     // 单数据库信息配置
     client: {
