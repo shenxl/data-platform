@@ -1,8 +1,28 @@
-
 'use strict';
 
 module.exports = app => {
   return class UserController extends app.Controller {
+
+
+    * login() {
+      const { ctx, logger } = this;
+      logger.info(ctx.csrf);
+      ctx.body = '登录页面';
+    }
+
+    * logout() {
+      const { ctx, logger } = this;
+      logger.info(ctx.csrf);
+      ctx.body = '退出页面';
+    }
+
+    * registry() {
+      const ctx = this.ctx;
+      const created = yield ctx.service.user.create(ctx.request.body);
+      ctx.status = 201;
+      ctx.body = created;
+    }
+
     * users() {
       const ctx = this.ctx;
       ctx.body = yield ctx.service.user.list(ctx.query);
@@ -11,13 +31,6 @@ module.exports = app => {
     * user() {
       const ctx = this.ctx;
       ctx.body = yield ctx.service.user.find(ctx.params.id);
-    }
-
-    * create() {
-      const ctx = this.ctx;
-      const created = yield ctx.service.user.create(ctx.request.body);
-      ctx.status = 201;
-      ctx.body = created;
     }
 
     * update() {

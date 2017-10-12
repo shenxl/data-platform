@@ -5,8 +5,10 @@ module.exports = appInfo => {
 
   // should change to your own
   config.keys = appInfo.name + '_1504860942113_6820';
-    // add your config here
-
+  // passport 配置
+  config.passportLocal = {
+    passReqToCallback: false
+  };
   config.sequelize = {
     dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
     database: 'demodb',

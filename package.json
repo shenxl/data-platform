@@ -6,9 +6,11 @@
   "dependencies": {
     "egg": "^1.7.0",
     "egg-mysql": "^3.0.0",
+    "egg-passport": "^1.0.0",
     "egg-scripts": "^1.1.1",
     "egg-sequelize": "^3.1.0",
-    "mysql2": "^1.4.2"
+    "mysql2": "^1.4.2",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "autod": "^2.9.0",
