@@ -6,13 +6,13 @@ module.exports = {
     const { INTEGER, DATE, STRING } = Sequelize;
 
     yield db.createTable('users', {
-      id: {
-        type: INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+      login: {
+        type: STRING,
+        primaryKey: true
       },
       name: STRING(30),
-      age: INTEGER,
+      password: STRING(32),
+      last_sign_in_at: DATE,
       created_at: DATE,
       updated_at: DATE
     });
@@ -25,10 +25,10 @@ module.exports = {
       title: STRING(30),
       content: STRING(255),
       user_id: {
-        type: INTEGER,
+        type: STRING,
         references: {
           model: 'users',
-          key: 'id'
+          key: 'login'
         },
         onUpdate: 'cascade',
         onDelete: 'cascade'

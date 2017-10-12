@@ -22,9 +22,9 @@ module.exports = app => {
 
     * update() {
       const ctx = this.ctx;
-      const id = ctx.params.id;
+      const login = ctx.params.id;
       const body = ctx.request.body;
-      ctx.body = yield ctx.service.user.update({ id, updates: body });
+      ctx.body = yield ctx.service.user.update({ login, updates: body });
     }
 
     * del() {

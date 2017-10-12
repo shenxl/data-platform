@@ -11,7 +11,7 @@ module.exports = app => {
     },
     title: STRING(30),
     content: STRING(255),
-    user_id: INTEGER,
+    user_id: STRING,
     created_at: DATE,
     updated_at: DATE
   });
