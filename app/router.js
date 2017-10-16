@@ -19,7 +19,7 @@ module.exports = app => {
   // auth 相关流程
 
   app.get('/auth/login', 'user.login');
-  app.get('/auth/register', 'user.register');
+  app.get('/auth/register', 'user.registerPage');
   app.get('/auth/logout', 'user.logout');
 
   const options = {

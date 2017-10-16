@@ -36,7 +36,8 @@ module.exports = appInfo => {
 
   config.view = {
     mapping: {
-      '.ejs': 'ejs'
+      '.ejs': 'ejs',
+      '.nj': 'nunjucks'
     }
   };
 

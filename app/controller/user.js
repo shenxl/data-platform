@@ -5,7 +5,12 @@ module.exports = app => {
 
     * login() {
       const { ctx } = this;
-      yield ctx.render('login.ejs');
+      yield ctx.render('login.nj');
+    }
+
+    * registerPage() {
+      const { ctx } = this;
+      yield ctx.render('register.nj', { msg: [] });
     }
 
     * logout() {
@@ -15,17 +20,21 @@ module.exports = app => {
 
     * register() {
       const { ctx, logger } = this;
-      if (ctx.request.body) {
-        try {
-          const created = yield ctx.service.user.create(ctx.request.body);
-          ctx.status = 302;
-          ctx.redirect('/auth/login');
-        } catch (err) {
-          logger.error(err);
-          yield ctx.render('register.ejs');
-        }
+      const userRole = {
+        login: 'string',
+        password: 'string'
+      };
+      try {
+        ctx.validate(userRole);
+        yield ctx.service.user.create(ctx.request.body);
+        ctx.status = 302;
+        ctx.redirect('/auth/login');
+      } catch (err) {
+        logger.warn(err.errors);
+        yield ctx.render('register.nj',
+        { msg: err.errors,
+          data: ctx.request.body });
       }
-      yield ctx.render('register.ejs');
     }
 
     * users() {

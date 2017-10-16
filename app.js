@@ -3,7 +3,7 @@ const Strategy = require('passport-local').Strategy;
 
 module.exports = app => {
 
-  class CustomController extends app.Controller {
+  class BaseController extends app.Controller {
     get user() {
       return this.ctx.session.user;
     }
@@ -24,7 +24,6 @@ module.exports = app => {
   });
 
 
-  app.Controller = CustomController;
   const config = app.config.passportLocal;
   app.passport.use('local', new Strategy(config,
     (req, username, password, done) => {
@@ -47,4 +46,6 @@ module.exports = app => {
     }
     return profile;
   });
+
+  app.Controller = BaseController;
 };

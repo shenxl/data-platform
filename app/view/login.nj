@@ -1,4 +1,9 @@
+{% extends "base.html" %}
+{% block header %}
 <link href="/public/css/login.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
 <div class="login-page">
   <div class="form">
     <h2 class="title">数据统计平台</h2>
@@ -11,3 +16,4 @@
     </form>
   </div>
 </div>
+{% endblock %}

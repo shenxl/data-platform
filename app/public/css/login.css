@@ -18,6 +18,10 @@
 .form .title{
   margin-top: -24px;
 }
+.form .errorMsg{
+  color: red;
+  text-align: left;
+}
 .form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
