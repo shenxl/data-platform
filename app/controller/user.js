@@ -3,26 +3,29 @@
 module.exports = app => {
   return class UserController extends app.Controller {
 
-
     * login() {
-      const { ctx, logger } = this;
-      logger.info(ctx.csrf);
-      yield ctx.render('login.ejs', {
-        data: '登录页面'
-      });
+      const { ctx } = this;
+      yield ctx.render('login.ejs');
     }
 
     * logout() {
-      const { ctx, logger } = this;
-      logger.info(ctx.csrf);
+      const { ctx } = this;
       ctx.body = '退出页面';
     }
 
-    * registry() {
-      const ctx = this.ctx;
-      const created = yield ctx.service.user.create(ctx.request.body);
-      ctx.status = 201;
-      ctx.body = created;
+    * register() {
+      const { ctx, logger } = this;
+      if (ctx.request.body) {
+        try {
+          const created = yield ctx.service.user.create(ctx.request.body);
+          ctx.status = 302;
+          ctx.redirect('/auth/login');
+        } catch (err) {
+          logger.error(err);
+          yield ctx.render('register.ejs');
+        }
+      }
+      yield ctx.render('register.ejs');
     }
 
     * users() {

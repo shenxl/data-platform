@@ -1,0 +1,14 @@
+<link href="/public/css/login.css" rel="stylesheet" type="text/css">
+<div class="login-page">
+  <div class="form">
+    <h2 class="title">数据统计平台</h2>
+    <form class="register-form" method="POST" action="/auth/register">
+      <input type="text" name="login" placeholder="邮件(@kingsoft)"/>
+      <input type="password" name="password" placeholder="密码"/>
+      <input type="text" name="username" placeholder="用户名"/>
+      <input type="hidden" name="_csrf" value="<%= ctx.csrf %>">
+      <button>注册</button>
+      <p class="message">已经注册了? <a href="/auth/login">登录</a></p>
+    </form>
+  </div>
+</div>

@@ -4,7 +4,6 @@ const co = require('co');
 module.exports = {
   up: co.wrap(function* (db, Sequelize) {
     const { INTEGER, DATE, STRING } = Sequelize;
-
     yield db.createTable('users', {
       login: {
         type: STRING,
@@ -12,6 +11,7 @@ module.exports = {
       },
       name: STRING(30),
       password: STRING(32),
+      email: STRING(255),
       last_sign_in_at: DATE,
       created_at: DATE,
       updated_at: DATE

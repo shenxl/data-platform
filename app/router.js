@@ -19,6 +19,7 @@ module.exports = app => {
   // auth 相关流程
 
   app.get('/auth/login', 'user.login');
+  app.get('/auth/register', 'user.register');
   app.get('/auth/logout', 'user.logout');
 
   const options = {
@@ -29,6 +30,6 @@ module.exports = app => {
 
   const local = app.passport.authenticate('local', options);
   app.post('/auth/login', local);
-  app.post('/auth/registry', 'user.registry');
+  app.post('/auth/register', 'user.register');
 
 };
