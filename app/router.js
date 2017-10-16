@@ -23,7 +23,7 @@ module.exports = app => {
   app.get('/auth/logout', 'user.logout');
 
   const options = {
-    successRedirect: '/',
+    successRedirect: 'http://localhost:8000',
     failureRedirect: '/auth/login',
     failureFlash: true
   };
