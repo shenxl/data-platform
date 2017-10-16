@@ -3,7 +3,6 @@ const assert = require('assert');
 const Strategy = require('passport-local').Strategy;
 
 module.exports = app => {
-
   class BaseController extends app.Controller {
     get user() {
       return this.ctx.session.user;
@@ -24,7 +23,6 @@ module.exports = app => {
     yield app.model.sync({ force: false });
   });
 
-
   const config = app.config.passportLocal;
   app.passport.use('local', new Strategy(config,
     (req, login, password, done) => {
@@ -41,11 +39,25 @@ module.exports = app => {
     // check user
     assert(user.provider, 'user.provider should exists');
     assert(user.login, 'user.login should exists');
-    const profile =
-      yield ctx.service.user.login({
-        login: user.login,
-        password: user.password });
-    return profile;
+    switch (user.provider) {
+      case 'local': {
+        const existsUser = yield ctx.model.User.findByLogin(user.login);
+        if (existsUser) {
+          // ctx.logger.info('用户:', existsUser);
+          const validPwd = existsUser.validPassword(user.password);
+          if (!validPwd) {
+            ctx.res.errmsg = { message: '密码错误' };
+            ctx.logger.info('SET RES:', ctx.res.errmsg);
+            return false;
+          }
+          return existsUser;
+        }
+        ctx.set('err-msg', { message: '用户不存在' });
+        return false;
+      }
+      default:
+        return false;
+    }
   });
 
   app.Controller = BaseController;

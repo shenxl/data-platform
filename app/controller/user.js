@@ -4,8 +4,9 @@ module.exports = app => {
   return class UserController extends app.Controller {
 
     * login() {
-      const { ctx } = this;
-      yield ctx.render('login.nj');
+      const { ctx, logger } = this;
+      logger.info('GET err-msg:', ctx.res.errmsg);
+      yield ctx.render('login.nj', { msg: [] });
     }
 
     * registerPage() {
