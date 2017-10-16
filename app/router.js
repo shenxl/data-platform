@@ -25,7 +25,7 @@ module.exports = app => {
   const options = {
     successRedirect: '/',
     failureRedirect: '/auth/login',
-    failureFlash: true
+    failureFlash: false
   };
 
   const local = app.passport.authenticate('local', options);

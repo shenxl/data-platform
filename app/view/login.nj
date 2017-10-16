@@ -7,10 +7,9 @@
 <div class="login-page">
   <div class="form">
     <h2 class="title">数据统计平台</h2>
-    <form class="login-form" method="POST" action="/auth/register">
+    <form class="login-form" method="POST" action="/auth/login">
       <input type="text" name='login' placeholder="邮件(@kingsoft)"/>
       <input type="password" name='password' placeholder="密码"/>
-      <input type="hidden" name="_csrf" value="<%= ctx.csrf %>">
       <button>登录</button>
       <p class="message">没有账号? <a href="/auth/register">创建</a></p>
     </form>

@@ -16,14 +16,13 @@ module.exports = {
       created_at: DATE,
       updated_at: DATE
     });
-    yield db.createTable('posts', {
-      id: {
+    yield db.createTable('authorizations', {
+      uid: {
         type: INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
-      title: STRING(30),
-      content: STRING(255),
+      provider: STRING(32),
       user_id: {
         type: STRING,
         references: {
@@ -39,7 +38,7 @@ module.exports = {
   }),
 
   down: co.wrap(function* (db) {
-    yield db.dropTable('posts');
+    yield db.dropTable('authorizations');
     yield db.dropTable('users');
   })
 };

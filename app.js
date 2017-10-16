@@ -1,4 +1,5 @@
 'use strict';
+const assert = require('assert');
 const Strategy = require('passport-local').Strategy;
 
 module.exports = app => {
@@ -26,9 +27,9 @@ module.exports = app => {
 
   const config = app.config.passportLocal;
   app.passport.use('local', new Strategy(config,
-    (req, username, password, done) => {
+    (req, login, password, done) => {
       const user = {
-        name: username,
+        login,
         password,
         provider: 'local'
       };
@@ -36,14 +37,14 @@ module.exports = app => {
     }));
 
 
-  app.passport.verify(function* (ctx, userInfo) {
+  app.passport.verify(function* (ctx, user) {
+    // check user
+    assert(user.provider, 'user.provider should exists');
+    assert(user.login, 'user.login should exists');
     const profile =
       yield ctx.service.user.login({
-        name: userInfo.name,
-        pwd: userInfo.password });
-    if (profile.message) {
-      return false;
-    }
+        login: user.login,
+        password: user.password });
     return profile;
   });
 

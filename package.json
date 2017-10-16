@@ -4,6 +4,7 @@
   "description": "数据统计服务",
   "private": true,
   "dependencies": {
+    "assert": "^1.4.1",
     "egg": "^1.7.0",
     "egg-mysql": "^3.0.0",
     "egg-passport": "^1.0.0",
