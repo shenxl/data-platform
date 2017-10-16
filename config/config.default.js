@@ -1,4 +1,5 @@
 'use strict';
+const path = require('path');
 
 module.exports = appInfo => {
   const config = {};
@@ -33,6 +34,20 @@ module.exports = appInfo => {
     agent: false
   };
 
+  config.view = {
+    mapping: {
+      '.ejs': 'ejs'
+    }
+  };
+
+  config.ejs = {
+    root: path.join(appInfo.baseDir, 'app/view'),
+    cache: true,
+    debug: false,
+    compileDebug: true,
+    delimiter: null,
+    strict: false
+  };
 
   return config;
 };

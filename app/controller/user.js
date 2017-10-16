@@ -7,7 +7,9 @@ module.exports = app => {
     * login() {
       const { ctx, logger } = this;
       logger.info(ctx.csrf);
-      ctx.body = '登录页面';
+      yield ctx.render('login.ejs', {
+        data: '登录页面'
+      });
     }
 
     * logout() {
