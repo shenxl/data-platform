@@ -8,6 +8,13 @@ module.exports = {
     enable: true,
     package: 'egg-mysql'
   },
+
+// email plug
+  email: {
+    enable: true,
+    package: 'egg-email'
+  },
+
 // model plug
   sequelize: {
     enable: true,

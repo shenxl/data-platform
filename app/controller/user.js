@@ -4,8 +4,7 @@ module.exports = app => {
   return class UserController extends app.Controller {
 
     * login() {
-      const { ctx, logger } = this;
-      logger.info('GET err-msg:', ctx.res.errmsg);
+      const { ctx } = this;
       yield ctx.render('login.nj', { msg: [] });
     }
 
@@ -20,14 +19,22 @@ module.exports = app => {
     }
 
     * register() {
-      const { ctx, logger } = this;
+      const { ctx, logger, config } = this;
       const userRole = {
         login: 'string',
         password: 'string'
       };
       try {
         ctx.validate(userRole);
-        yield ctx.service.user.create(ctx.request.body);
+        const register = yield ctx.service.user.create(ctx.request.body);
+        const mailOptions = {
+          from: config.email.client.auth.user,
+          to: register.login,
+          subject: 'hello world',
+          html: '<a href = \'link\'>点击链接进行验证</a>'
+        };
+        logger.info('mailOptions: ', mailOptions);
+        yield ctx.service.email.sendMail(mailOptions);
         ctx.status = 302;
         ctx.redirect('/auth/login');
       } catch (err) {

@@ -52,5 +52,19 @@ module.exports = appInfo => {
     strict: false
   };
 
+
+  config.email = {
+    app: true,
+    client: {
+      host: 'smtp.163.com',
+      secureConnection: true,
+      port: 465,
+      auth: {
+        user: 'wpssupport@163.com',
+        pass: '12345qwert'
+      }
+    }
+  };
+
   return config;
 };
