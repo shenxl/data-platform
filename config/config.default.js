@@ -60,7 +60,7 @@ module.exports = appInfo => {
       secureConnection: true,
       port: 465,
       auth: {
-        user: 'wpssupport@163.com',
+        user: '@163.com',
         pass: '12345qwert'
       }
     }
